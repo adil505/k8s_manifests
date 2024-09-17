@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  get-service
+spec:
+  selector:
+    app:  get
+  type:  ClusterIP
+  ports:
+  # - name:  add-service-port
+  #   protocol: TCP
+    - port:  80
+      targetPort:  8000

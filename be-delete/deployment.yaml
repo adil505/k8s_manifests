@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  delete-deployment
+  namespace: default
+  labels:
+    app:  delete
+spec:
+  selector:
+    matchLabels:
+      app: delete
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app:  delete
+    spec:
+      containers:
+      - name:  delete-pod
+        image:  astelware/gr18:delete-corrected
+        env:
+        - name: CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: k8s-todoapp-secret
+              key: cs_key_inside_k8s_todoapp_secret
+        ports:
+        - containerPort:  8000

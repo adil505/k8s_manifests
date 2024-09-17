@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  ui-service
+spec:
+  selector:
+    app:  ui
+  type:  ClusterIP
+  ports:
+  # - name:  add-service-port
+  #   protocol: TCP
+    - port:  80
+      targetPort:  80

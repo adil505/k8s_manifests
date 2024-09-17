@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  delete-service
+spec:
+  selector:
+    app:  delete
+  type:  ClusterIP
+  ports:
+  # - name:  add-service-port
+  #   protocol: TCP
+    - port:  80
+      targetPort:  8000

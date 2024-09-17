@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  add-deployment
+  namespace: default
+  labels:
+    app:  add
+spec:
+  selector:
+    matchLabels:
+      app: add
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app:  add
+    spec:
+      containers:
+      - name:  add-pod
+        image:  astelware/gr18:add
+        env:
+        - name: CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: k8s-todoapp-secret
+              key: cs_key_inside_k8s_todoapp_secret
+        ports:
+        - containerPort:  8000
